@@ -1,4 +1,6 @@
-variable "project" {}
+variable "project" {
+  description = "Your GCP Project ID"
+}
 
 locals {
   data_lake_bucket = "epl_data_lake"
@@ -22,5 +24,10 @@ variable "big_query_dataset" {
   default     = "epl_analytics_dwh"
   type        = string
   description = "BigQuery dataset that raw data from GCS will be written to"
+}
+
+variable "storage_class" {
+  default = "STANDARD"
+  description = "Storage class type for the bucket"
 }
 
