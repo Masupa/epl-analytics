@@ -1,0 +1,7 @@
+Scrapy==2.9.0
+prefect==2.10.21
+selenium==4.10.0
+pandas==2.0.3
+pyarrow==12.0.1
+fastparquet==2023.7.0
+prefect-gcp==0.4.4
