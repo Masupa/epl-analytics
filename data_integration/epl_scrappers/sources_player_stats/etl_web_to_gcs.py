@@ -4,6 +4,7 @@ import os
 import ssl
 import time
 from datetime import timedelta
+from datetime import datetime
 import pandas as pd
 
 # Import Prefect
@@ -26,13 +27,15 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 @task(name='Extract Player Stats', retries=2, cache_key_fn=task_input_hash,
       cache_expiration=timedelta(days=1))
-def extract_player_data(web_url: str) -> pd.DataFrame:
+def extract_player_data(web_url: str, epl_season: str) -> pd.DataFrame:
     """Extract player data from the web
 
     Args:
     -----
     web_url : str
         web_url to extract data from
+    epl_season : str
+        EPL season
 
     Returns:
         Pandas DataFrame with EPL data
@@ -142,6 +145,15 @@ def extract_player_data(web_url: str) -> pd.DataFrame:
                     )
                 continue
 
+        data_len = len(players_details['Player'])
+
+        # Update EPL season
+        players_details['Season'] = [epl_season] * data_len
+        
+        # Take note of time data is ingested
+        players_details['CreatedAt'] = [datetime.utcnow()] * data_len
+        players_details['UpdatedAt'] = [datetime.utcnow()] * data_len
+
         return pd.DataFrame(players_details)
 
     finally:
@@ -223,7 +235,7 @@ def load_to_gcs(player_stats_df: pd.DataFrame, epl_season: str,
 
     gcp_cloud_storage_bucket_block.upload_from_dataframe(
         df=player_stats_df,
-        to_path=f'epl_player_stats_repository/{season_year}/{data_file_name}.parquet',
+        to_path=f'epl_player_stats_repository/{epl_season}/{data_file_name}.parquet',
         serialization_format='parquet_gzip'
     )
 
@@ -248,7 +260,8 @@ def etl(web_url: str, data_file_name: str, season: str) -> None:
     """
 
     # Extract player stats data
-    player_stats_df = extract_player_data(web_url=web_url)
+    player_stats_df = extract_player_data(
+        web_url=web_url, epl_season=season)
 
     # Transform data
     player_stats_df = transform_player_stats_data(player_stats_df)
