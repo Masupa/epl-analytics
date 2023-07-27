@@ -4,6 +4,7 @@ variable "project" {
 
 locals {
   data_lake_bucket = "epl_data_lake"
+  player_stats_schema = file("./resources/schema/player_stats_data.json")
 }
 
 variable "credentials_file" {}
