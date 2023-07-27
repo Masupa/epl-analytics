@@ -1,0 +1,67 @@
+[
+    {
+      "name":"Player",
+      "type":"STRING",
+      "description": "Player full names"
+    },
+    {
+      "name":"Mins",
+      "type":"STRING",
+      "description": "Minutes played"
+    },
+    {
+      "name":"Goals",
+      "type":"STRING",
+      "description": "Goals scored"
+    },
+    {
+      "name":"Assists",
+      "type":"STRING",
+      "description": "Assists made"
+    },
+    {
+      "name":"Yel",
+      "type":"STRING",
+      "description": "Yellow cards received"
+    },
+    {
+      "name":"Red",
+      "type":"STRING",
+      "description": "Red cards received"
+    },
+    {
+      "name":"SpG",
+      "type":"STRING",
+      "description": "Shots per game"
+    },
+    {
+      "name":"PS_",
+      "type":"STRING",
+      "description": "Pass success percentage"
+    },
+    {
+      "name":"AerialsWon",
+      "type":"STRING",
+      "description": "Aerial duels won per game"
+    },
+    {
+      "name":"MotM",
+      "type":"STRING",
+      "description": "Man of the Match"
+    },
+    {
+      "name":"Season",
+      "type":"STRING",
+      "description": "League Season"
+    },
+    {
+      "name":"CreatedAt",
+      "type":"TIMESTAMP",
+      "description": "Timestamp when data is ingested"
+    },
+    {
+      "name":"UpdatedAt",
+      "type":"TIMESTAMP",
+      "description": "Timestamp when data is updated"
+    }
+  ]

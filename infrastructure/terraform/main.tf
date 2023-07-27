@@ -33,3 +33,16 @@ resource "google_bigquery_dataset" "epl_dataset" {
   project    = var.project
   location   = var.region
 }
+
+# Player Stats Table
+resource "google_bigquery_table" "player_stats_data" {
+  project = var.project
+  dataset_id = var.big_query_dataset
+  table_id = "player_stats_data"
+
+  schema = local.player_stats_schema
+
+  # Define clustering configuration
+  clustering = ["Season"]
+
+  }
