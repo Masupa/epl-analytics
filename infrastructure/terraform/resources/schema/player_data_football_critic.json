@@ -1,0 +1,67 @@
+[
+    {
+      "name":"Player Names",
+      "type":"STRING",
+      "description": "Player full names"
+    },
+    {
+      "name":"Club",
+      "type":"STRING",
+      "description": "Player's current club"
+    },
+    {
+      "name":"Nationality",
+      "type":"STRING",
+      "description": "Player's nationality"
+    },
+    {
+      "name":"Age",
+      "type":"STRING",
+      "description": "Player's age"
+    },
+    {
+      "name":"DOB",
+      "type":"STRING",
+      "description": "Player's age"
+    },
+    {
+      "name":"Position",
+      "type":"STRING",
+      "description": "Player's position in field"
+    },
+    {
+      "name":"Prefered_Foot",
+      "type":"STRING",
+      "description": "Player's preferred foot"
+    },
+    {
+      "name":"Height",
+      "type":"STRING",
+      "description": "Player's height"
+    },
+    {
+      "name":"Weight",
+      "type":"STRING",
+      "description": "Player's weight"
+    },
+    {
+      "name":"Previous_Teams",
+      "type":"STRING",
+      "description": "Player's previous teams"
+    },
+    {
+      "name":"CreatedAt",
+      "type":"TIMESTAMP",
+      "description": "Timestamp when data is ingested"
+    },
+    {
+      "name":"Season",
+      "type":"STRING",
+      "description": "League Season"
+    },
+    {
+      "name":"UpdatedAt",
+      "type":"TIMESTAMP",
+      "description": "Timestamp when data is updated"
+    }
+  ]
