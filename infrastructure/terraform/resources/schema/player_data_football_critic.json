@@ -1,6 +1,6 @@
 [
     {
-      "name":"Player Names",
+      "name":"Player_Names",
       "type":"STRING",
       "description": "Player full names"
     },
@@ -21,7 +21,7 @@
     },
     {
       "name":"DOB",
-      "type":"STRING",
+      "type":"TIMESTAMP",
       "description": "Player's age"
     },
     {

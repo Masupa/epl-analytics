@@ -55,6 +55,8 @@ resource "google_bigquery_table" "player_demo_data" {
 
   schema = local.player_demo_schema
 
+  deletion_protection = false
+
   # Define clustering configuration
   clustering = ["Season", "Club", "Position", "Nationality"]
 
