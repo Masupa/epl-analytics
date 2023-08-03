@@ -4,6 +4,7 @@ import time
 import argparse
 from datetime import timedelta
 import pandas as pd
+import numpy as np
 
 import utils
 
@@ -145,6 +146,44 @@ def extract_player_data(crawl_url: str):
     )
 
 
+@task(name='Transformation Extract Data', retries=2)
+def transform_data(df: pd.DataFrame, season_year: str):
+    """Transform the extracted data
+    
+    Args:
+    -----
+    df : pd.DataFrame
+        EPL dataset
+    season_year : str
+        Season year
+
+    Returns:
+    df : pd.DataFrame
+        Transformed EPL dataset
+    """
+
+    # Split `Age` column into `Age` and `DOB`
+    df['Age'] = df['Age'].str.replace("years ", "")
+    df[['Age', 'DOB']] = df['Age'].str.split(" ", expand=True)
+
+    # Clean `DOB` and convert type to DOB
+    df['DOB'] = (
+        df['DOB'].str.replace("(", "")
+        .str.replace(")", "")
+    )
+    df['DOB'] = pd.to_datetime(df['DOB'])
+
+    # Add `Season Year`
+    df['Season'] = [season_year] * len(df['Player Names'])
+
+    # Clean `Prefered Foot`, `Height` and `Weight`
+    df['Prefered Foot'] = df['Prefered Foot'].replace('-', np.nan)
+    df['Height'] = df['Height'].replace("-", np.nan)
+    df['Weight'] = df['Weight'].replace('-', np.nan)
+
+    return df
+
+
 @task(name='Load data to GCS', retries=2, cache_key_fn=task_input_hash,
       cache_expiration=timedelta(hours=1))
 def load_to_gcs(player_stats_df: pd.DataFrame, epl_season: str,
@@ -194,6 +233,8 @@ def etl(url: str, season: str, dataset_file_name: str) -> None:
 
     # Extract data
     data_frame = extract_player_data(crawl_url=url)
+    # Transform data
+    data_frame = transform_data(data_frame, season)
     # Load to GCS
     load_to_gcs(data_frame, season, dataset_file_name)
 
