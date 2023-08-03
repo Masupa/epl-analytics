@@ -46,3 +46,16 @@ resource "google_bigquery_table" "player_stats_data" {
   clustering = ["Season"]
 
   }
+
+# Player Demographics Table
+resource "google_bigquery_table" "player_demo_data" {
+  project = var.project
+  dataset_id = var.big_query_dataset
+  table_id = "player_demo_data"
+
+  schema = local.player_demo_schema
+
+  # Define clustering configuration
+  clustering = ["Season", "Club", "Position", "Nationality"]
+
+  }
