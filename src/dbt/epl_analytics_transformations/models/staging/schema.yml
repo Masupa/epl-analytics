@@ -1,0 +1,70 @@
+version: 2
+
+# Sources
+sources:
+  - name: epl_analytics_dwh
+    schema: epl_analytics_dwh
+    tables:
+      # Player Stats Table
+      - name: player_stats_data
+        description: the raw player statistics data
+        # Columns
+        columns:
+          - name: Player
+            description: Player's full names
+          - name: Mins
+            description: Minutes player played
+          - name: Goals
+            description: Goals scored by player
+          - name: Assists
+            description: Assists made by player
+          - name: Yel
+            description: Number of yellow cards player received
+          - name: Red
+            description: Number of red cards player received
+          - name: SpG
+            description: Shorts made per game
+          - name: PS_
+            description: Pass success percentage
+          - name: AerialsWon
+            description: Aerial duels won per game
+          - name: MotM
+            description: Number of matches player was man of the match
+          - name: Season
+            description: League season
+          - name: CreatedAt
+            description: The date data was ingested
+          - name: UpdatedAt
+            description: The date data was updated
+
+      # Player Demographics Table
+      - name: player_demo_data
+        description: The raw dataset containing player information
+        # Columns
+        columns:
+          - name: Player_Names
+            description: Player full names
+          - name: Club
+            description: Player's current club
+          - name: Nationality
+            description: Player's nationality
+          - name: Age
+            description: Player's age
+          - name: Position
+            description: Player's position on the field
+          - name: Prefered_Foot
+            description: Player's preferred foot
+          - name: Height
+            description: Player's height
+          - name: Weight
+            description: Player's weight
+          - name: Previous_Teams
+            description: The previous teams player has played at
+          - name: CreatedAt
+            description: The date data was ingested
+          - name: UpdatedAt
+            description: The date data was updated
+          - name: DOB
+            description: The date player was born
+          - name: Season
+            description: League season
