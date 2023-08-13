@@ -1,6 +1,7 @@
 with player_demographics as (
 
     select
+        {{ dbt_utils.generate_surrogate_key(['Player_Names', 'Age']) }} as primary_key,
         Player_Names as player_names,
         Club as club,
         Nationality as nationality,
