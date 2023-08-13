@@ -1,3 +1,5 @@
+dbt-bigquery==1.6.0
+dbt-core==1.6.0
 fastparquet==2023.7.0
 pandas==2.0.3
 pandas-gbq==0.19.2
