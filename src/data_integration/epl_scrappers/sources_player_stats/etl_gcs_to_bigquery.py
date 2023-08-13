@@ -1,4 +1,5 @@
 import os
+import argparse
 import numpy as np
 import pandas as pd
 from datetime import timedelta
@@ -62,7 +63,7 @@ def transform_to_df(data_file_path: str):
     df = pd.read_parquet(data_file_path)
 
     # Filter values with NaN where there is no record
-    df['Goals'] = df['Red'].replace('-', np.nan)
+    df['Goals'] = df['Goals'].replace('-', np.nan)
     df['Assists'] = df['Assists'].replace('-', np.nan)
     df['Yel'] = df['Yel'].replace('-', np.nan)
     df['Red'] = df['Red'].replace('-', np.nan)
@@ -77,8 +78,7 @@ def transform_to_df(data_file_path: str):
     return df
 
 
-@task(name='load to BigQuery', retries=2, cache_expiration=timedelta(hours=1),
-      cache_key_fn=task_input_hash)
+@task(name='load to BigQuery', retries=2)
 def load_to_bq(df: pd.DataFrame) -> None:
     """Load DataFrame to BigQuery
 
@@ -127,17 +127,19 @@ def etl(gcs_file_path: str):
 
 
 if __name__ == '__main__':
-    season_years = ['2012-2013', '2013-2014', '2014-2015',
-                    '2015-2016', '2016-2017', '2017-2018',
-                    '2018-2019', '2019-2020', '2020-2021',
-                    '2021-2022', '2022-2023']
+    arg_parser = argparse.ArgumentParser(
+        description='Pass Season Year'
+    )
+    arg_parser.add_argument('--season_year', type=str, required=True)
+
+    season = arg_parser.parse_args().season_year
+
     current_local_path = os.path.dirname(__file__)
 
-    for season in season_years:
-        GCS_PATH = (
-            f'epl_player_stats_repository/{season}/'
-            f'epl_player_stats_data.gz.parquet'
-        )
+    GCS_PATH = (
+        f'epl_player_stats_repository/{season}/'
+        f'epl_player_stats_data.gz.parquet'
+    )
 
-        # Extract data from GCS to BigQuery
-        etl(GCS_PATH)
+    # Extract data from GCS to BigQuery
+    etl(GCS_PATH)
