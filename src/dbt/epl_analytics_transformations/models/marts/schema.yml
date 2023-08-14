@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: epl_dataset
+    description: EPL dataset with all player, stats and demographics data
+    columns:
+      - name: player_names
+        description: Player's full name
+      - name: club
+        description: Player's current club
+      - name: nationality
+        description: Player's nationality
+      - name: age
+        description: Player's during the season age
+      - name: playing_position
+        description: Player's playing position in the field
+      - name: prefered_playing_foot
+        description: Player's prefered playing foot
+      - name: height
+        description: Player's height
+      - name: weight
+        description: Player's weight
+      - name: previous_teams
+        description: Player's previous teams
+      - name: date_of_birth
+        description: Player's date of birth
+      - name: season
+        description: EPL Season
+      - name: goals_scored
+        description: Number of goals player scored
+      - name: assists_made
+        description: Number of assists player made
+      - name: yellow_cards_received
+        description: Number of yellow cards player received
+      - name: red_cards_received
+        description: Number of red cards player received

@@ -5,38 +5,6 @@ sources:
   - name: epl_analytics_dwh
     schema: epl_analytics_dwh
     tables:
-      # Player Stats Table
-      - name: player_stats_data
-        description: the raw player statistics data
-        # Columns
-        columns:
-          - name: Player
-            description: Player's full names
-          - name: Mins
-            description: Minutes player played
-          - name: Goals
-            description: Goals scored by player
-          - name: Assists
-            description: Assists made by player
-          - name: Yel
-            description: Number of yellow cards player received
-          - name: Red
-            description: Number of red cards player received
-          - name: SpG
-            description: Shorts made per game
-          - name: PS_
-            description: Pass success percentage
-          - name: AerialsWon
-            description: Aerial duels won per game
-          - name: MotM
-            description: Number of matches player was man of the match
-          - name: Season
-            description: League season
-          - name: CreatedAt
-            description: The date data was ingested
-          - name: UpdatedAt
-            description: The date data was updated
-
       # Player Demographics Table
       - name: player_demo_data
         description: The raw dataset containing player information
@@ -68,3 +36,38 @@ sources:
             description: The date player was born
           - name: Season
             description: League season
+
+
+# Models
+models:
+  - name: stg__player_demographics
+    description: Staging model with raw player information
+    columns:
+        - name: primary_key
+          description: Surrogate primary key of table
+        - name: player_names
+          description: Player's full names
+        - name: club
+          description: Player's current club
+        - name: nationality
+          description: Player's nationality
+        - name: age
+          description: Player's age in years
+        - name: playing_position
+          description: Player's position on the field
+        - name: prefered_playing_foot
+          description: Player's prefered playing foot
+        - name: height
+          description: Player's height
+        - name: height_units
+          description: Heights unit of measure
+        - name: weight
+          description: Player's weight
+        - name: weight_units
+          description: Weights unit of measure
+        - name: previous_teams
+          description: Player's previous teams
+        - name: date_of_birth
+          description: Player's date of birth
+        - name: season
+          description: EPL Season

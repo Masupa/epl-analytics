@@ -1,0 +1,68 @@
+version: 2
+
+# Sources
+sources:
+  - name: epl_analytics_dwh
+    schema: epl_analytics_dwh
+    tables:
+      # Player Stats Table
+      - name: player_stats_data
+        description: the raw player statistics data
+        # Columns
+        columns:
+          - name: Player
+            description: Player's full names
+          - name: Mins
+            description: Minutes player played
+          - name: Goals
+            description: Goals scored by player
+          - name: Assists
+            description: Assists made by player
+          - name: Yel
+            description: Number of yellow cards player received
+          - name: Red
+            description: Number of red cards player received
+          - name: SpG
+            description: Shorts made per game
+          - name: PS_
+            description: Pass success percentage
+          - name: AerialsWon
+            description: Aerial duels won per game
+          - name: MotM
+            description: Number of matches player was man of the match
+          - name: Season
+            description: League season
+          - name: CreatedAt
+            description: The date data was ingested
+          - name: UpdatedAt
+            description: The date data was updated
+
+# Models
+models:
+  - name: stg__player_stats
+    description: Staging model for raw stats data
+    columns:
+      - name: player_stats_id
+        description: Surrogate primary key for the table
+      - name: player_names
+        description: Player's full names
+      - name: minutes_played
+        description: Number of minutes player played
+      - name: goals_scored
+        description: Number of goals player scored
+      - name: assists_made
+        description: Number of assists player made
+      - name: yellow_cards_received
+        description: Number of yellow cards player received
+      - name: red_cards_received
+        description: Number of red cards player received
+      - name: shots_per_game
+        description: Shots made per game
+      - name: pass_success_percentage
+        description: Percentage of passes successfully made
+      - name: aerial_duels_won_per_game
+        description: Aerials duels won per game
+      - name: man_of_the_match
+        description: Number of man of the matches awarded
+      - name: season
+        description: EPL Season
