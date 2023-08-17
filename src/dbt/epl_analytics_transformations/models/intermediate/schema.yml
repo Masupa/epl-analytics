@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: player_game_stats
+    description: An aggregation of goals, assists, yellow/red cards by player and season
+    columns:
+      - name: player_names
+        description: Player's full name
+      - name: season
+        description: EPL Season
+      - name: goals_scored
+        description: Total goals scored by player per season
+      - name: assists_made
+        description: Total assists made by player per season
+      - name: yellow_cards_received
+        description: Yellow cards received by player per season
+      - name: red_cards_received
+        description: Red cards received by player per season

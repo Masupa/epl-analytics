@@ -28,5 +28,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   epl_analytics_transformations:
-    example:
-      +materialized: view
+    staging:
+      +materialized: view  
+    intermediate:
+      +materialized: view  
+    marts:
+      +materialized: table
