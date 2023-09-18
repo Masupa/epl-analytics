@@ -1,0 +1,17 @@
+services:
+  data-pipeline:
+    build: .
+
+  analytics-db:
+    image: postgres
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD-SHELL", "psql -h localhost -U ${POSTGRES_USER} -c select 1 -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - "./postgres_db:/var/lib/postgresql/data:rw"
+    ports:
+      - "5432:5432"
