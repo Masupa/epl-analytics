@@ -1,0 +1,17 @@
+"""
+CREATE TABLE player_demo_data (
+	player_names VARCHAR(255)
+	club VARCHAR(100)
+	nationality VARCHAR(100)
+	age INT
+	dob DATE
+	posittion VARCHAR(100)
+	preferred_foot VARCHAR(100)
+	height VARCHAR(10)
+	weight VARCHAR(10)
+	previous_teams VARCHAR(255)
+	season VARCHAR(20)
+	created_at TIMESTAMP
+	updated_at TIMESTAMP
+)
+"""
