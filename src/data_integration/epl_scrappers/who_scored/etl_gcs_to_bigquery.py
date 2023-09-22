@@ -15,9 +15,8 @@ from prefect_gcp.cloud_storage import GcsBucket
 load_dotenv()
 
 # Catch env variables
-project_id = os.getenv('project_id')
-player_stats_dataset = os.getenv('epl_analytics_dwh')
-player_stats_table = os.getenv('player_stats_table')
+project_id = os.getenv('PROJECT_ID')
+player_stats_table = os.getenv('PLAYER_STATS_TABLE')
 
 
 @task(name='extract from GCS', retries=2,

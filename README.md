@@ -57,4 +57,15 @@ Load: After the data is extracted and minimal transformations have been performe
 The resulting Dashboard is designed to show an overview of English Premier League stats, and player demographic. On it, an end user can filter the data on the EPL Season,  Club or Age.
 
 ![Overview](assets/epl-analytics-dashboard-1.png)
-![Data-dump](assets/epl-analytics-dashboard-2.png)
+
+
+### Application Setup
+
+This section outlines how to reproduce the project on your machine.
+
+#### Environment Variables
+Here is a list of the environment variables
+* `PROJECT_ID:` Google Cloud Platform Project ID
+* `PLAYER_STATS_TABLE:` Name of the BigQuery Table containing player stats data. This is how the variable is formatted: big_query_dataset.player_stats_table
+* `PLAYER_DEMO_TABLE:` Name of the BigQuery Table containing demographic data. This is how the variable is formatted: big_query_dataset.player_demo_table
+* `DRIVER_NAME`: Selenium driver that will be used to scrape data. Here, we provide the browser name. E.g. FireFox, Chrome, etc
